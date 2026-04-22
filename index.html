@@ -118,6 +118,7 @@ function App() {
 
   const genImage = async () => {
     if (!prompt.trim()) return;
+    if (prompt.length > 1000) { setError("Prompt too long. Please limit to 1000 characters."); return; }
     setLoading(true); setError(""); setResult(null);
     const seed = Math.floor(Math.random() * 99999);
     try {
@@ -140,6 +141,7 @@ function App() {
 
   const genVideo = async () => {
     if (!vPrompt.trim()) return;
+    if (vPrompt.length > 1000) { setError("Prompt too long. Please limit to 1000 characters."); return; }
     setLoading(true); setError(""); setResult(null);
     await new Promise(r => setTimeout(r, 1200));
     setResult({
@@ -178,6 +180,7 @@ function App() {
           <div className="panel">
             <div className="plabel">{tab === "Image" ? "Describe your image" : "Describe your video"}</div>
             <textarea
+              maxLength={1000}
               placeholder={tab === "Image"
                 ? "A beautiful sunset over mountains, golden hour, cinematic..."
                 : "Aerial view of Mumbai at night, city lights, slow pan..."}
@@ -271,9 +274,9 @@ function App() {
             <div className="img-res">
               <img src={result.url} alt={result.prompt} />
               <div className="acts">
-                <button className="abtn p" onClick={() => window.open(result.url, "_blank")}>↓ Download HD</button>
+                <button className="abtn p" onClick={() => window.open(result.url, "_blank", "noopener,noreferrer")}>↓ Download HD</button>
                 <button className="abtn s" onClick={() => { setResult(null); genImage(); }}>↻ Regenerate</button>
-                <button className="abtn s" onClick={() => window.open(result.url, "_blank")}>⤢ Full Size</button>
+                <button className="abtn s" onClick={() => window.open(result.url, "_blank", "noopener,noreferrer")}>⤢ Full Size</button>
               </div>
             </div>
           )}
