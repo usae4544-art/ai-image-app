@@ -1,0 +1,4 @@
+## 2024-04-25 - Implement Content Security Policy
+**Vulnerability:** Missing Content Security Policy (CSP) headers, making the application vulnerable to Cross-Site Scripting (XSS) and unwanted external resource loading.
+**Learning:** When configuring CSP for this repository's standalone Babel application, 'unsafe-inline' and 'unsafe-eval' are required for scripts to work properly due to client-side transpilation. Additionally, explicit directives like 'media-src' must be defined to prevent falling back to a restrictive 'default-src' which would block the app's core functionalities.
+**Prevention:** Always implement a strict but functional CSP for frontend applications. If using tools that require inline execution (like Babel standalone), limit the scope using exact URLs for dependencies (like cdnjs.cloudflare.com) to minimize risk, and consider migrating to a build-time compiler in the future to allow dropping 'unsafe-inline' and 'unsafe-eval'.
