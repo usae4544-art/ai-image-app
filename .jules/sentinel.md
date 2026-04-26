@@ -1,0 +1,4 @@
+## 2025-04-26 - Content Security Policy for Babel Standalone
+**Vulnerability:** Missing Content Security Policy (CSP) allowed potentially untrusted scripts or assets to execute, raising the risk of Cross-Site Scripting (XSS).
+**Learning:** When configuring CSP for a standalone Babel application (which transpiles client-side), `unsafe-inline` and `unsafe-eval` are explicitly required for the scripts to work. Also, without an explicit `media-src`, it might fall back to a restrictive `default-src` which blocks the app's core image and video functionality.
+**Prevention:** Always implement a strict CSP that maps exactly to the expected dependencies and usage. For Babel standalone apps, explicit exceptions (`unsafe-inline`, `unsafe-eval`, and `media-src`) must be configured to balance security with operational functionality.
