@@ -1,0 +1,4 @@
+## 2024-03-22 - Content Security Policy Constraints for Standalone Babel
+**Vulnerability:** Missing Content Security Policy (CSP) allowed potential execution of unauthorized scripts and loading of unverified resources, leaving the app vulnerable to XSS and data exfiltration.
+**Learning:** Due to the use of a standalone Babel compiler (`babel.min.js`) executing client-side, the CSP requires `'unsafe-inline'` and `'unsafe-eval'` in the `script-src` directive for the application to function. This significantly weakens the CSP compared to a pre-compiled React application.
+**Prevention:** When possible, pre-compile React applications (e.g., using Vite, Next.js, or Webpack) to avoid the need for `'unsafe-eval'` in production CSPs. If standalone Babel must be used, ensure strong restrictions on other directives (e.g., `connect-src`, `img-src`, `frame-src`) to minimize the impact of potential XSS.
