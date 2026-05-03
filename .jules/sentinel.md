@@ -1,0 +1,4 @@
+## 2024-05-03 - Missing Content Security Policy and Babel Standalone Constraints
+**Vulnerability:** The application lacks a Content Security Policy (CSP) header, exposing it to Cross-Site Scripting (XSS) and data injection vulnerabilities.
+**Learning:** The project's standalone Babel architecture requires `'unsafe-inline'` and `'unsafe-eval'` for scripts to run successfully, preventing the use of a fully strict CSP. Specific domains for media and APIs (e.g., pixabay.com, image.pollinations.ai) must be explicitly whitelisted in `img-src` and `media-src` rather than relying on `default-src` or `connect-src`.
+**Prevention:** Always implement a baseline CSP in web applications. When using client-side transpilation (like Babel standalone), understand the security trade-offs (e.g., needing `unsafe-eval`) and mitigate by heavily restricting other directives (like `connect-src`, `img-src`, and `media-src`) to known and trusted domains.
