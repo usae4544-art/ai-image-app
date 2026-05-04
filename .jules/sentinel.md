@@ -1,0 +1,4 @@
+## 2024-05-04 - [CSP in Babel Standalone Apps]
+**Vulnerability:** Missing Content Security Policy (CSP) allowing potential cross-site scripting (XSS) and unrestricted resource loading.
+**Learning:** For a single-page app utilizing Babel standalone directly in the browser, the CSP requires 'unsafe-inline' and 'unsafe-eval' for script execution to transpile and run the code correctly. Additionally, explicit directives for external media domains (like 'media-src', 'img-src') must be present to prevent breaking the application's core functionality while applying restrictive policies. Google Fonts specifically requires whitelisting `https://fonts.gstatic.com` in `font-src`.
+**Prevention:** In similar architecture, always specify strict CSP headers but cater the script execution capabilities and explicit resource domains accordingly to avoid application breakdown while providing security layers.
