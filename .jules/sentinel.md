@@ -1,0 +1,4 @@
+## 2024-05-08 - Required Weakened CSP due to Babel Standalone
+**Vulnerability:** Weak Content Security Policy (CSP) allowing `'unsafe-inline'` and `'unsafe-eval'`.
+**Learning:** The application architecture uses Babel standalone for in-browser JSX compilation, which dynamically evaluates code. This fundamentally requires the CSP `script-src` directive to include both `'unsafe-inline'` and `'unsafe-eval'`. While adding a CSP provides baseline defense-in-depth, relying on in-browser Babel compilation prevents enforcing a strict, optimal CSP, leaving the application more vulnerable to XSS than a pre-compiled React application.
+**Prevention:** In future or production applications, pre-compile all frontend assets (e.g., using Vite, Webpack, or similar build tools) so that `'unsafe-inline'` and `'unsafe-eval'` can be removed from the CSP entirely.
