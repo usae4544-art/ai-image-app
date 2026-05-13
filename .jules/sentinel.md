@@ -1,0 +1,4 @@
+## 2024-05-13 - Strict CSP Configuration for Babel Standalone Apps
+**Vulnerability:** Missing Content Security Policy (CSP) allowing execution of arbitrary scripts and loading of unauthorized resources.
+**Learning:** When using Babel standalone in the browser (e.g., `<script type="text/babel">`), the CSP `script-src` directive MUST include `'unsafe-inline'` and `'unsafe-eval'` for Babel to parse and execute the embedded JSX/React code correctly. Additionally, explicit `media-src` and `img-src` directives must be defined to prevent falling back to a restrictive `default-src` which blocks core functionalities.
+**Prevention:** Implement a strict CSP that explicitly whitelists only necessary CDNs (like cdnjs, Google Fonts) and API endpoints (Pollinations, Pixabay, Pexels, Videvo) while still permitting Babel's execution requirements.
