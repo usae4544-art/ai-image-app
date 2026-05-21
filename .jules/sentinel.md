@@ -1,0 +1,4 @@
+## 2024-05-24 - [CSP And Reverse Tabnabbing]
+**Vulnerability:** Reverse tabnabbing via `window.open` calls opening external sites without `noopener,noreferrer`, allowing malicious pages to redirect the original application using `window.opener`. The application was also missing a Content Security Policy (CSP), making it vulnerable to XSS and unintended external script execution.
+**Learning:** Even static HTML pages utilizing heavily controlled external resources require a CSP tailored to their dependencies to prevent dependency-based injection or generalized XSS. In standalone Babel setups, `unsafe-inline` and `unsafe-eval` are practically unavoidable for transpilation.
+**Prevention:** Always include `noopener,noreferrer` when using `window.open` or `target="_blank"`. Implement strict whitelisting for domains providing scripts, CDNs, fonts, and images using CSP `<meta>` tags when HTTP headers cannot be managed server-side.
