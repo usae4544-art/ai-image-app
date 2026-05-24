@@ -1,0 +1,4 @@
+## 2024-03-24 - Reverse Tabnabbing in `window.open`
+**Vulnerability:** The codebase was using `window.open(url, "_blank")` without specifying `noopener` or `noreferrer`. This could allow an attacker to gain access to the original page's `window.opener` object, potentially leading to phishing or unauthorized actions on the originating site.
+**Learning:** Even simple client-side link opening logic needs to be secured, as it exposes a vector for attacks when opening user-generated or external links.
+**Prevention:** Always include `"noopener,noreferrer"` as the third parameter when calling `window.open(url, '_blank')`, or ensure `rel='noopener noreferrer'` is set for anchor tags with `target='_blank'`.
