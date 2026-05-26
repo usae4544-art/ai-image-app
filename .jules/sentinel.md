@@ -1,0 +1,4 @@
+## 2024-05-24 - Missing Content Security Policy (CSP)
+**Vulnerability:** The application lacks a Content Security Policy (CSP), allowing any external resource (scripts, styles, images) to be loaded and executed, increasing the risk of Cross-Site Scripting (XSS) and data exfiltration.
+**Learning:** The architecture uses Babel standalone for client-side transpilation and multiple external CDNs (React, Pollinations, Pixabay, Pexels) for its core features, but omits a baseline defense-in-depth mechanism against unauthorized resource execution.
+**Prevention:** Always define a strict CSP using a `<meta>` tag or HTTP header, explicitly whitelisting required external domains and explicitly blocking default behaviors for unsupported resources. Ensure CSP validation is part of automated testing pipelines.
