@@ -1,0 +1,4 @@
+## 2026-05-27 - Implement Content Security Policy
+**Vulnerability:** The application was lacking a Content Security Policy (CSP), leaving it vulnerable to Cross-Site Scripting (XSS) and data injection attacks since any inline script or malicious domain resource could potentially be executed or loaded.
+**Learning:** For this specific architecture using Babel standalone and React directly in the browser via CDNs, the CSP must allow 'unsafe-inline' and 'unsafe-eval' for scripts to compile and run properly. Additionally, explicit external domains (image.pollinations.ai, pixabay.com, pexels.com, videvo.net) must be whitelisted for 'img-src', 'connect-src', and 'media-src' to prevent blocking core app functionality.
+**Prevention:** Ensure that any new standalone web applications include a strictly scoped CSP from inception, properly identifying and whitelisting necessary external CDN and API dependencies rather than relying on an overly permissive default or missing CSP.
