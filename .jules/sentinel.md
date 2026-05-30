@@ -1,0 +1,4 @@
+## 2024-05-30 - Missing Content Security Policy & Reverse Tabnabbing
+**Vulnerability:** The application lacks a Content Security Policy (CSP), allowing potentially arbitrary script execution and resource loading. Additionally, `window.open` calls do not use `noopener,noreferrer`, leaving the application vulnerable to Reverse Tabnabbing.
+**Learning:** For standalone Babel applications heavily relying on external CDNs, explicitly defining `media-src`, `font-src`, and including `unsafe-inline`/`unsafe-eval` is crucial. Omitting `noopener,noreferrer` when opening external tabs can allow the newly opened tab to manipulate the original tab's `window.opener` object.
+**Prevention:** Always implement a strict CSP by default, explicitly whitelisting only necessary domains. Always use `noopener,noreferrer` as the third argument for `window.open` and `rel="noopener noreferrer"` for external anchor tags to prevent Reverse Tabnabbing.
