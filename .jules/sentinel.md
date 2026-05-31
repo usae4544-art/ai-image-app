@@ -1,0 +1,4 @@
+## 2024-05-24 - Add Content Security Policy for Babel Standalone App
+**Vulnerability:** Missing Content Security Policy (CSP) allowed potentially untrusted scripts to be executed and external assets to be fetched without restriction.
+**Learning:** Standalone React apps utilizing Babel (`babel-standalone`) require `unsafe-inline` and `unsafe-eval` in `script-src` for client-side transpilation. Additionally, dynamically fetching media means those domains (e.g., `image.pollinations.ai`, `pixabay.com`) must be explicitly whitelisted in `img-src`, `media-src`, and `connect-src`.
+**Prevention:** Implement CSP via meta tag for serverless standalone apps, carefully tailoring domains and directives to enable required functionality while maintaining as tight a security posture as possible.
