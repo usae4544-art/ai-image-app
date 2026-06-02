@@ -1,0 +1,4 @@
+## 2024-05-24 - Missing Content Security Policy (CSP)
+**Vulnerability:** The application was missing a Content Security Policy (CSP) header, leaving it vulnerable to various injection attacks such as XSS.
+**Learning:** Adding a CSP for a standalone Babel application requires the use of `'unsafe-inline'` and `'unsafe-eval'` for scripts. This is an architectural gap that limits the strictness of the CSP. In addition, `media-src` and `img-src` are required to allow external sources to work and shouldn't fallback to `default-src`.
+**Prevention:** Avoid relying on Babel standalone in production environments when possible to allow for stricter CSP rules. Ensure all external domains are explicitly whitelisted.
