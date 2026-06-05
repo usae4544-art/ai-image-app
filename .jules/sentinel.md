@@ -1,0 +1,4 @@
+## 2024-06-05 - Missing Content Security Policy (CSP)
+**Vulnerability:** The application was missing a Content Security Policy (CSP), leaving it potentially vulnerable to Cross-Site Scripting (XSS) and data injection attacks.
+**Learning:** Even static frontend applications without backend services require CSP to mitigate XSS risks, especially when rendering user input or loading external scripts/resources. Standalone Babel applications need specific CSP settings, such as `unsafe-inline` and `unsafe-eval` for scripts to work properly.
+**Prevention:** Always implement a strict Content Security Policy by default for all web applications. Explicitly whitelist necessary domains for scripts, styles, fonts, images, and media to minimize the attack surface. Validate CSP using automated testing tools like Playwright to ensure no legitimate functionality is blocked.
