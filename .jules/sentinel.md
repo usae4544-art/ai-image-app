@@ -1,0 +1,4 @@
+## 2024-06-08 - Missing Content Security Policy (CSP)
+**Vulnerability:** The application lacks a Content Security Policy (CSP), leaving it vulnerable to Cross-Site Scripting (XSS) attacks. Additionally, links to external sites lack 'noopener,noreferrer' which could lead to Reverse Tabnabbing.
+**Learning:** For this Babel standalone application, 'unsafe-inline' and 'unsafe-eval' are required for scripts. Furthermore, domains used for dynamically fetching media (e.g., image.pollinations.ai) must be explicitly whitelisted in the 'img-src' directive, and external domains used in links (pixabay.com, pexels.com, videvo.net) do not necessarily need CSP changes, but any media resources fetched from external APIs must be handled.
+**Prevention:** Implement a strong CSP using a meta tag in `index.html` and explicitly whitelist required domains for scripts, styles, images, and fonts. Include 'noopener,noreferrer' on all `window.open` calls opening external links.
