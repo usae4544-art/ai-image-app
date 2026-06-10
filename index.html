@@ -101,6 +101,13 @@ const { useState } = React;
 
 const IMG_STYLES = ["Photorealistic","Cinematic","Portrait","Landscape","Macro","Street Photography","Documentary","Architecture"];
 const VID_STYLES = ["Cinematic","Timelapse","Slow Motion","Documentary","Aerial","News Style","Nature","Urban"];
+const FEATURES = ["✓ Photorealistic", "✓ Free Forever", "✓ HD Quality", "✓ Instant"].map(t => {
+  const spaceIdx = t.indexOf(" ");
+  return {
+    first: t.substring(0, spaceIdx),
+    rest: t.substring(spaceIdx + 1)
+  };
+});
 
 function App() {
   const [tab, setTab] = useState("Image");
@@ -162,8 +169,8 @@ function App() {
         <h1>Create <span className="hl">Real AI</span><br/>Images & Videos</h1>
         <p className="sub">Professional-grade generation — free forever</p>
         <div className="pills">
-          {["✓ Photorealistic","✓ Free Forever","✓ HD Quality","✓ Instant"].map(t => (
-            <div className="pill" key={t}><b>{t.split(" ")[0]}</b> {t.split(" ").slice(1).join(" ")}</div>
+          {FEATURES.map((f, i) => (
+            <div className="pill" key={i}><b>{f.first}</b> {f.rest}</div>
           ))}
         </div>
       </header>
