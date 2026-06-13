@@ -1,0 +1,4 @@
+## 2026-06-13 - Missing Security Headers (CSP)
+**Vulnerability:** Missing Content Security Policy (CSP) headers, allowing arbitrary external scripts, images, and fonts to be loaded.
+**Learning:** For standalone Babel applications, `'unsafe-inline'` and `'unsafe-eval'` are strictly required for scripts to function properly. Therefore, other resources (images, media, fonts, connections) must be tightly scoped to specific authorized domains to prevent unintended resource loading or data exfiltration, instead of just using a broad `default-src`.
+**Prevention:** Implement a `<meta http-equiv="Content-Security-Policy">` tag natively within single-page applications (like those relying on Babel standalone), explicitly whitelisting all required external domains across the `script-src`, `style-src`, `font-src`, `img-src`, `media-src`, and `connect-src` directives.
