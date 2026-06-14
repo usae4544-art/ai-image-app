@@ -1,0 +1,4 @@
+## 2024-05-24 - Missing Content Security Policy (CSP)
+**Vulnerability:** The application was missing a Content Security Policy (CSP), leaving it vulnerable to Cross-Site Scripting (XSS) and other data injection attacks.
+**Learning:** For a standalone Babel application, a restrictive CSP must still allow `'unsafe-inline'` and `'unsafe-eval'` for scripts to function properly. Furthermore, dynamic media sources (like `image.pollinations.ai`, `pixabay.com`, `www.pexels.com`, `www.videvo.net`) must be explicitly whitelisted in `img-src`, `media-src`, and `connect-src` directives to prevent blocking core app functionality.
+**Prevention:** Always implement a baseline CSP that explicitly lists required external domains rather than relying on an open policy or a restrictive policy that breaks functionality.
