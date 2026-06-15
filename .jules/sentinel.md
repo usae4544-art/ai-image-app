@@ -1,0 +1,4 @@
+## 2024-06-15 - Missing Content Security Policy (CSP)
+**Vulnerability:** The application was lacking a Content-Security-Policy (CSP) meta tag or header. This left the app vulnerable to Cross-Site Scripting (XSS) and other data injection attacks since it could run unauthorized scripts or fetch content from unexpected domains.
+**Learning:** For standalone Babel applications running entirely in the browser without a backend, we must explicitly configure 'unsafe-inline' and 'unsafe-eval' for React and Babel to function, and explicitly whitelist specific image/media domains instead of relying on a broad 'default-src'.
+**Prevention:** Always implement a strict Content-Security-Policy in `index.html` for purely client-side applications to lock down script execution and resource loading to only explicitly trusted domains.
