@@ -1,0 +1,7 @@
+## 2024-05-18 - Missing Content Security Policy (CSP)
+
+**Vulnerability:** The application was missing a Content Security Policy (CSP). It runs as a client-side only React application using Babel standalone, loading resources dynamically from several external CDNs. Without a CSP, the application was vulnerable to XSS attacks loading malicious external resources or exfiltrating data, and vulnerable to falling victim to unauthorized domains loading inline scripts.
+
+**Learning:** When developing Babel standalone single-page applications without a build step, CSP can be challenging since `unsafe-inline` and `unsafe-eval` must be allowed for the `script-src` directive for Babel to transpile JSX client-side. The key to mitigating risks here is strict domain whitelisting for all other directives (`img-src`, `connect-src`, `style-src`, `font-src`, `media-src`).
+
+**Prevention:** Always implement a strict CSP meta tag in the `<head>` of `index.html` as early as possible. Explicitly whitelist required domains like `cdnjs.cloudflare.com` for Babel/React, and specifically allow `data:` and `blob:` for dynamically generated media or images. Any new external resource addition must be accompanied by a CSP review.
