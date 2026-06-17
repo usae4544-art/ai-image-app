@@ -1,0 +1,4 @@
+## 2024-11-20 - [Implement Content Security Policy (CSP)]
+**Vulnerability:** The application was lacking a Content Security Policy (CSP), leaving it vulnerable to Cross-Site Scripting (XSS), data injection, and unauthorized data transmission.
+**Learning:** For standalone Babel applications using React without a build process, `unsafe-inline` and `unsafe-eval` are required in the `script-src` directive. External domains for CDNs, APIs, fonts, and images (such as cdnjs.cloudflare.com, fonts.googleapis.com, image.pollinations.ai, and various stock footage sites) must be explicitly whitelisted to avoid functional breakage.
+**Prevention:** Implement CSP headers/tags from the beginning of development and maintain an explicit whitelist of required domains. Ensure that security headers are always considered even in client-only prototypes or simple sites.
