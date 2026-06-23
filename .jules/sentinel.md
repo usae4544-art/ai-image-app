@@ -1,0 +1,4 @@
+## 2024-05-24 - Content Security Policy for Babel Standalone
+**Vulnerability:** Missing Content Security Policy (CSP) allowed potential Cross-Site Scripting (XSS) and data exfiltration. The application relied on `unsafe-inline` and `unsafe-eval` due to Babel standalone transpilation, making it vulnerable without a baseline CSP.
+**Learning:** When using Babel standalone in the browser, `unsafe-inline` for styles/scripts and `unsafe-eval` for script execution are mandatory. A restrictive `default-src` without these will break the app. However, explicitly whitelisting allowed external domains for scripts, images, media, and connections provides a crucial layer of defense even with these unsafe directives.
+**Prevention:** Always implement a baseline CSP. If a framework requires unsafe directives, lock down other resource directives (`img-src`, `media-src`, `connect-src`) to strictly whitelisted external domains to limit the attack surface.
