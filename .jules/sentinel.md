@@ -1,0 +1,4 @@
+## 2024-06-25 - React Standalone App Content Security Policy (CSP)
+**Vulnerability:** Missing Content Security Policy leaves application vulnerable to Cross-Site Scripting (XSS) and reverse tabnabbing via `window.open` calls without `noopener,noreferrer`.
+**Learning:** Adding CSP to a standalone React application that uses Babel in the browser requires allowing `'unsafe-inline'` and `'unsafe-eval'` for scripts. External domains used by the application (e.g. `image.pollinations.ai`, `cdnjs.cloudflare.com`) must be explicitly whitelisted. Reverse tabnabbing can be resolved by passing `"noopener,noreferrer"` as the third parameter of `window.open`.
+**Prevention:** Always implement a customized CSP that accounts for all legitimate external resources. Ensure `window.open` always includes `noopener,noreferrer` and `target="_blank"` anchor tags include `rel="noopener noreferrer"`.
