@@ -1,0 +1,4 @@
+## 2024-06-29 - Missing noopener/noreferrer on window.open
+**Vulnerability:** window.open calls without the 'noopener,noreferrer' 3rd argument (Reverse Tabnabbing).
+**Learning:** The application uses React `onClick` event handlers with `window.open(url, "_blank")` for external image downloads and full-size viewing. While modern browsers have made `noopener` the default for `<a target="_blank">`, explicitly passing `'noopener,noreferrer'` to `window.open` ensures consistent defense-in-depth protection across all browsers against Reverse Tabnabbing attacks where the newly opened window could manipulate `window.opener.location` of the parent page.
+**Prevention:** Always include `"noopener,noreferrer"` as the third argument when using `window.open(url, "_blank")` to prevent the opened page from accessing `window.opener`.
