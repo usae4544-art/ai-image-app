@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Security Concern: Added explicit CSP to prevent XSS and restrict unauthorized resource loading by whitelisting required external domains. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://image.pollinations.ai https://pixabay.com https://www.pexels.com https://www.videvo.net; media-src 'self' data: blob: https://image.pollinations.ai https://pixabay.com https://www.pexels.com https://www.videvo.net; connect-src 'self' https://image.pollinations.ai https://pixabay.com https://www.pexels.com https://www.videvo.net;">
 <title>AI Image & Video Generator — Free</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>

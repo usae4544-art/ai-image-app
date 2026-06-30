@@ -1,0 +1,4 @@
+## 2024-06-30 - Add Content Security Policy
+**Vulnerability:** The application was missing a Content Security Policy (CSP), exposing it to Cross-Site Scripting (XSS) and unauthorized resource loading.
+**Learning:** The application dynamically loads external resources (e.g. fonts, CDNs, and media APIs) but without CSP, malicious actors could potentially inject scripts or external unauthorized dependencies.
+**Prevention:** Add a strict CSP meta tag defining trusted sources using `default-src`, `script-src`, `style-src`, `img-src`, and `connect-src` specifically whitelisting required external domains.
