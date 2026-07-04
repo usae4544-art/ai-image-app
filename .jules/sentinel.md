@@ -1,0 +1,4 @@
+## 2024-05-24 - [CSP in Standalone Babel React Apps]
+**Vulnerability:** Missing Content Security Policy (CSP) allowed potentially unmitigated XSS vulnerabilities and unauthorized external resource loading.
+**Learning:** When implementing CSP for a frontend application using React and Babel standalone (transpiling in the browser), the `script-src` directive MUST include `'unsafe-inline'` and `'unsafe-eval'` for Babel to function correctly. Additionally, external resources (CDNs, Image/Video search APIs) must be explicitly whitelisted in the respective directives (`script-src`, `img-src`, `media-src`, `connect-src`).
+**Prevention:** Include CSP `<meta>` tags early in the `<head>` of `index.html`. Carefully map all required external domains and explicitly allow Babel's execution requirements while restricting `default-src` to `'self'`.
