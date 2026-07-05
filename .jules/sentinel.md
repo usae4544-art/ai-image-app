@@ -1,0 +1,4 @@
+## 2026-07-05 - CSP in Client-Side Babel React App
+**Vulnerability:** Missing Content Security Policy (CSP) allowed potential execution of unauthorized scripts and data exfiltration.
+**Learning:** When configuring CSP for an application using React with Babel standalone for client-side transpilation, `script-src` must include both `'unsafe-inline'` and `'unsafe-eval'` for Babel to function correctly. Additionally, the specific CDNs used (cdnjs.cloudflare.com) and the external APIs explicitly queried (e.g., image.pollinations.ai, pixabay.com, pexels.com, videvo.net) must be whitelisted across relevant directives (`img-src`, `media-src`, `connect-src`).
+**Prevention:** Always implement a strict CSP by default. If client-side transpilation or inline scripts are absolutely necessary, explicitly configure `unsafe-inline` and `unsafe-eval` with corresponding explicit domain whitelisting to narrow the attack surface.
