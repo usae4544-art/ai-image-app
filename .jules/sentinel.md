@@ -1,0 +1,4 @@
+## 2024-07-07 - Add Content Security Policy for Babel Standalone App
+**Vulnerability:** The React/Babel application lacked a Content Security Policy, making it highly vulnerable to Cross-Site Scripting (XSS) due to inline execution requirements and dynamic user input handling.
+**Learning:** For Babel standalone to function with React, the `script-src` directive strictly requires both `'unsafe-inline'` and `'unsafe-eval'`. External CDNs for react, babel, fonts, and image APIs must be meticulously whitelisted across `script-src`, `style-src`, `font-src`, `img-src`, and `connect-src` directives to avoid breaking the application layout and generative features.
+**Prevention:** Always implement a strict CSP by default in new frontend projects, tailoring `unsafe-inline` and `unsafe-eval` only where absolutely necessitated by tools like Babel standalone, and explicitly whitelisting trusted third-party APIs.
