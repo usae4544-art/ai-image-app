@@ -1,0 +1,4 @@
+## 2024-07-08 - Fixing Reverse Tabnabbing
+**Vulnerability:** The application used `window.open(url, "_blank")` without specifying `noopener,noreferrer` features. This makes it vulnerable to reverse tabnabbing, where the newly opened tab can manipulate the original page's `window.opener` object to redirect it to a malicious site.
+**Learning:** Even simple actions like opening an image or video in a new tab can introduce security risks if not configured properly. The `noopener` feature prevents the new page from accessing the `window.opener` object, while `noreferrer` prevents sending the Referer header to the new page, adding an extra layer of privacy and security.
+**Prevention:** Always include `"noopener,noreferrer"` as the features string when using `window.open` with `target="_blank"`, just as you would add `rel="noopener noreferrer"` to `<a>` tags.
