@@ -141,7 +141,6 @@ function App() {
   const genVideo = async () => {
     if (!vPrompt.trim()) return;
     setLoading(true); setError(""); setResult(null);
-    await new Promise(r => setTimeout(r, 1200));
     setResult({
       type: "video", prompt: vPrompt, style: vStyle,
       links: [
